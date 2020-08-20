@@ -1,0 +1,5 @@
+steps:
+  - name: Dummy echo
+    command: echo 'blah'
+    agents:
+      role: builder-dev
