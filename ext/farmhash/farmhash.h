@@ -55,6 +55,7 @@
 
 namespace NAMESPACE_FOR_HASH_FUNCTIONS {
 
+#if defined(FARMHASH_UINT128_T_DEFINED)
 #if defined(__clang__)
 #if !defined(uint128_t)
 #define uint128_t __uint128_t
@@ -69,10 +70,12 @@ inline uint64_t Uint128High64(const uint128_t x) {
 inline uint128_t Uint128(uint64_t lo, uint64_t hi) {
   return lo + (((uint128_t)hi) << 64);
 }
-// typedef std::pair<uint64_t, uint64_t> uint128_t;
-// inline uint64_t Uint128Low64(const uint128_t x) { return x.first; }
-// inline uint64_t Uint128High64(const uint128_t x) { return x.second; }
-// inline uint128_t Uint128(uint64_t lo, uint64_t hi) { return uint128_t(lo, hi); }
+#else
+typedef std::pair<uint64_t, uint64_t> uint128_t;
+inline uint64_t Uint128Low64(const uint128_t x) { return x.first; }
+inline uint64_t Uint128High64(const uint128_t x) { return x.second; }
+inline uint128_t Uint128(uint64_t lo, uint64_t hi) { return uint128_t(lo, hi); }
+#endif
 
 
 // BASIC STRING HASHING
