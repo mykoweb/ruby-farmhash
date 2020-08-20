@@ -10,4 +10,4 @@ RbConfig::MAKEFILE_CONFIG['CXX'] = cxx if cxx
   $CPPFLAGS += " #{flag}" unless $CPPFLAGS.split.include? flag
 end
 
-create_makefile('ruby-farmhash/farmhash')
+create_makefile('farmhash/farmhash')
